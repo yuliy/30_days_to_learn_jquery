@@ -1,10 +1,19 @@
 <html>
     <head>
-        <title>jQuery Basics</title>
+        <title>Basics - Lesson 2</title>
         <style>
-            ul li {color: red;}
-            .emphasis {color: green;}
+            .emphasis {font-weight: bold;}
         </style>
+
+        <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
+        <script>
+            $(function() {
+                $('li:first-child').addClass('emphasis');
+            });
+            $(function() {
+                $('li:last-child').addClass('emphasis');
+            });
+        </script>
     </head>
 
     <body>
@@ -13,12 +22,6 @@
             <li>hello 2</li>
             <li>hello 3</li>
         </ul>
-
-        <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
-        <script>
-            var lis = $('ul li').addClass('emphasis');
-            console.log('Hello, {name}'.format({'name': 'yuliy'}));
-        </script>
     </body>
 
     <script type=text/javascript>
