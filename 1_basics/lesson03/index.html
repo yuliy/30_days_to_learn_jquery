@@ -2,6 +2,11 @@
     <head>
         <meta charset=utf-8>
         <title>Basics - Lesson 3</title>
+        <style>
+            .container {
+                color: green;
+            }
+        </style>
     </head>
 
     <body>
@@ -11,18 +16,30 @@
                 Lorem ipsum ...
             </p>
 
-            <ul class="emphasis">
+            <ul class="emphasis container">
                 <li>item</li>
                 <li>item 2</li>
                 <li>item 3</li>
+                <li>item 4</li>
+                <li>item 5</li>
+                <li>
+                    <ul>
+                        <li>nested item</li>
+                    </ul>
+                </li>
             </ul>
-
         </div>
 
         <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
         <script>
-            var obj = $('ul.emphasis').children('li');
-            console.log(obj);
+            /*
+            $('ul.emphasis')
+                .children('li')
+                .eq(3)
+                .prev()
+                .text('custom text');
+            */
+            $('li').closest('.container').removeClass('container');
         </script>
     </body>
 </html>
