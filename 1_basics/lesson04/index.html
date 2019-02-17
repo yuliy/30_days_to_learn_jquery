@@ -9,7 +9,7 @@
         <div class="container">
             <h1>Welcome to My Website</h1>
 
-            <button data-file="day" disabled="true">Day</button>
+            <button data-file="day" disabled>Day</button>
             <button data-file="night">Night</button>
 
             <p>
@@ -22,11 +22,14 @@
             $(function() {
                 var link = $('head > link');
                 $('button').on('click', function() {
-                    var $this = $(this);
-                    var fileName = $this.data('file') + '.css'
+                    var $this = $(this),
+                        fileName = $this.data('file') + '.css'
+
                     link.attr('href', fileName);
-                    $this.attr('disabled', 'true');
-                    $this.siblings('button').removeAttr('disabled');
+                    $this
+                        .attr('disabled', 'disabled')
+                        .siblings('button')
+                        .removeAttr('disabled');
                 });
             });
         </script>
