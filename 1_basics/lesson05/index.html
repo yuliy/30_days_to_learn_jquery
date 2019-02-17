@@ -1,22 +1,58 @@
+<!doctype html>
 <html>
     <head>
         <meta charset=utf-8>
         <title>Basics - Lesson 5</title>
+        <link rel="stylesheet" href="index.css">
     </head>
 
     <body>
         <div class="container">
             <h1>Welcome to My Website</h1>
 
-            <p>
-                Lorem Ipsum ...
-            </p>
+            <dl>
+                <dt>What are your hours?</dt>
+                <dd>We are open 24/7.</dd>
+
+                <dt>What are your hours?</dt>
+                <dd>We are open 24/7.</dd>
+
+                <dt>What are your hours?</dt>
+                <dd>We are open 24/7.</dd>
+
+                <dt>What are your hours?</dt>
+                <dd>We are open 24/7.</dd>
+
+                <dt>What are your hours?</dt>
+                <dd>We are open 24/7.</dd>
+            </dl>
         </div>
 
         <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
         <script>
             $(function() {
-                //
+                $('dd').filter(':nth-child(n+4)').hide();
+
+                /*
+                // In this case we have a handler for each <dt> element.
+                $('dt').on('mouseenter', function() {
+                    $(this)
+                        .next()
+                            .slideDown(200)
+                            .siblings('dd')
+                                .slideUp(200);
+                });
+                */
+
+                // In this case we have a single handler on a parent (<dl> element)
+                // which triggers only when the mouse is on <dt> element.
+                $('dl').on('mouseenter', 'dt', function() {
+                    $(this)
+                        .next()
+                            .slideDown(200)
+                            .siblings('dd')
+                                .slideUp(200);
+                });
             });
         </script>
     </body>
