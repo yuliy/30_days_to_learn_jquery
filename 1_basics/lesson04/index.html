@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset=utf-8>
-        <title>Basics - Lesson 3</title>
+        <title>Basics - Lesson 4</title>
         <style>
             .container {
                 color: green;
@@ -16,30 +16,17 @@
                 Lorem ipsum ...
             </p>
 
-            <ul class="emphasis container">
+            <ul class="emphasis">
                 <li>item</li>
                 <li>item 2</li>
                 <li>item 3</li>
                 <li>item 4</li>
                 <li>item 5</li>
-                <li>
-                    <ul>
-                        <li>nested item</li>
-                    </ul>
-                </li>
             </ul>
         </div>
 
         <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
         <script>
-            /*
-            $('ul.emphasis')
-                .children('li')
-                .eq(3)
-                .prev()
-                .text('custom text');
-            */
-            $('li').closest('.container').removeClass('container');
         </script>
     </body>
 </html>
