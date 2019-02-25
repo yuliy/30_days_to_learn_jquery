@@ -6,7 +6,7 @@
 
         <style>
             body {
-                width: 600px;
+                width: 500px;
                 margin: auto;
                 font-family: sans-serif;
             }
@@ -83,14 +83,55 @@
                 $('html').addClass('js');
 
                 var contactForm = {
-                    init: function() {
+                    container: $('#contact'),
+
+                    config: {
+                        effect: 'slideToggle',
+                        speed: 500
+                    },
+
+                    init: function(config) {
+                        $.extend(this.config, config);
+
                         $('<button>', {
                             text: 'Contact Me'
-                        }).insertAfter('article:first');
+                        })
+                            .insertAfter('article:first')
+                            .on('click', this.show);
+                    },
+
+                    show: function() {
+                        var cf = contactForm,
+                            container = cf.container,
+                            config = cf.config;
+
+                        if (container.is(':hidden')) {
+                            cf.close.call(container);
+                            container[config.effect](config.speed);
+                        }
+                    },
+
+                    close: function() {
+                        var $this = $(this); // #contact
+                        config = contactForm.config;
+
+                        if ($this.find('span.close').length)
+                            return;
+
+                        $('<span>')
+                            .addClass('close')
+                            .text('X')
+                            .prependTo(this)
+                            .on('click', function() {
+                                $this[config.effect](config.speed)
+                            });
                     }
                 };
 
-                contactForm.init();
+                contactForm.init({
+                    effect: 'fadeToggle',
+                    speed: 300
+                });
             })();
         </script>
     </body>
