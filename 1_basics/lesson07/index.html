@@ -2,25 +2,33 @@
 <html>
     <head>
         <meta charset=utf-8>
-        <title>Basics - Lesson 7</title>
+        <title>Basics - Lesson 7 - Creating and Appending Content</title>
     </head>
 
     <body>
-        <div class="container">
-            <h2>Click Me</h2>
-            <h2>Click Me</h2>
-            <h2>Click Me</h2>
-            <h2>Click Me</h2>
-        </div>
+        <article>
+            <h1>My Awesome Post</h1>
+            <p>
+                Lorem ipsum...
+            </p>
+            <p>
+                Lorem ipsum...
+            </p>
+        </article>
 
         <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
         <script>
-            $(function() {
-                $('div.container').delegate('h2', 'click', function() {
-                    console.log('clicked');
-                    $(this).clone().appendTo('.container');
-                });
-            });
+            //$('article').append('Hello!').prepend('hello!').append('hi!');
+            $('h1').after('hello!');
+            /*
+            You should remember these methods:
+                append / appendTo
+                prepend / prependTo
+                isertafter
+                insertbefore
+                before
+                after
+            */
         </script>
     </body>
 </html>
