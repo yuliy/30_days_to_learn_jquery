@@ -10,17 +10,35 @@
 
     <body>
 
-        <article>
-        </article>
-
-        <div id="contact">
-        </div>
+        <a href="http://yuliy.me">Click Me</a>
 
         <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
         <script>
-            (function() {
-                //
-            })();
+            var obj = {
+                doIt: function(e) {
+                    console.log(this);
+                    e.preventDefault();
+                }
+            };
+
+            function doSomething(e) {
+                e.preventDefault();
+                console.log(this);
+            };
+
+            /*
+            $('a').on('click', function(e) {
+                //obj.doIt();
+                obj.doIt.call(this, e);
+                e.preventDefault();
+            });
+            */
+
+            $('a').on('click',
+                $.proxy(obj.doIt, obj)
+            );
+
+
         </script>
     </body>
 </html>
