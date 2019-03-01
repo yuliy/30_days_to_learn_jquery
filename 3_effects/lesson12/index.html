@@ -5,28 +5,78 @@
         <title>Effects - Lesson 12 - Full Control With animate</title>
 
         <style>
-            p {margin-top: 0}
+            body {
+                margin: 0
+            }
+
+            .box {
+                width: 400px;
+                background: red;
+                padding: 2em;
+                position: relative;
+                -webkit-transition: border-radius 1s;
+            }
+
+            .rounded {
+                border-radius: 50px
+            }
         </style>
     </head>
 
     <body>
-        <h1>Click Me</h1>
-        <div class=content>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+        <div class="box">
+            <h2>Some Content Here</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
         </div>
 
+        <p><button>Center</button></p>
+
         <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
         <script>
             $(function() {
-                var content = $('div.content').hide();
+                var box = $('div.box'),
+                    w = $(window).width() / 2 - box.outerWidth() / 2;
+                    h = $(window).height() / 2 - box.outerHeight() / 2;
 
-                $('h1').on('click', function() {
-                    content.flash();
+                $('button').on('click', function() {
+                    /*
+                    box.animate({
+                        'font-size': '+=5',
+                        'width': '+=100'
+                    }, 3000, 'swing', function() {
+                        console.log('completed');
+                    });
+                    */
+
+                    /*
+                    box.animate({
+                        'font-size': '+=5',
+                        'width': '+=100'
+                    }, {
+                        duration: 500,
+                        complete: function() {
+                            console.log('complete');
+                        },
+                        step: function() {
+                            console.log(
+                                'The current font-size is: '
+                                + $(this).css('fontSize')
+                            );
+                        }
+                    });
+                    */
+
+                    /*
+                    box
+                        .animate({
+                            'fontSize': '+=5'
+                        }, { duration: 500 })
+                        .animate({'top': 300}, {duration: 1500, queue: false});
+                    */
+
+                    box.addClass('rounded');
                 });
             });
         </script>
