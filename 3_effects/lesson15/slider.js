@@ -1,47 +1,31 @@
 
-$(function() {
-    var sliderUL =  $('div.slider').css('overflow', 'hidden').children('ul'),
-        imgs = sliderUL.find('img'),
-        imgWidth = imgs.first().width(), // 150
-        imgsLen = imgs.length,   // 4
-        current = 1,
-        totalImgsWidth = imgWidth * imgsLen; // 600
+function Slider( container, nav ) {
+    this.container = container;
+    this.nav = nav.show();;
 
-    $('#slider-nav').show().find('button').on('click', function() {
-        var $this = $(this);
-        var direction = $this.data('dir'),
-            loc = imgWidth; // 150
+    this.imgs = this.container.find('img');
+    this.imgWidth = this.imgs.first().width(); // 150
+    this.imgsLen = this.imgs.length;
 
-        // update current value
-        (direction === 'next') ? ++current : --current;
+    this.current = 0;
 
-        // if first image
-        if (current === 0) {
-            current = imgsLen;
-            loc = totalImgsWidth - imgWidth;
-            direction = 'next';
-        } else if (current - 1 === imgsLen) { // Are we at the end?
-            current = 1;
-            loc = 0;
-        }
+};
 
-        transition(sliderUL, loc, direction);
+Slider.prototype.transition = function( coords ) {
+    this.container.animate({
+        'margin-left': coords || -(this.current * this.imgWidth),
     });
+};
 
-    function transition(container, loc, direction) {
-        console.log(container);
-        console.log(loc);
-        console.log(direction);
-        var unit; // -= +=
+Slider.prototype.setCurrent = function( dir ) {
+    var pos = this.current;
 
-        if (direction && loc !== 0) {
-            unit = (direction === 'next') ? '-=' : '+=';
-        }
+    //pos += (dir === 'next') ? 1 : -1;
+    // Or we can do the same the following way:
+    pos += ( ~~(dir === 'next') || -1 );
 
-        container.animate({
-            'margin-left': unit ? (unit + loc) : loc,
-        })
-    }
-
-});
+    this.current = (pos < 0)
+        ? (this.imgsLen - 1)    // underflow
+        : pos % this.imgsLen;   // overflow
+};
 
