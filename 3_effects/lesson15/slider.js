@@ -27,5 +27,7 @@ Slider.prototype.setCurrent = function( dir ) {
     this.current = (pos < 0)
         ? (this.imgsLen - 1)    // underflow
         : pos % this.imgsLen;   // overflow
+
+    return this.current;
 };
 
